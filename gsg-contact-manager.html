@@ -4901,20 +4901,10 @@ GSG Palestine</textarea>
         function checkConfiguration() {
             const statusElement = document.getElementById('connection-status');
 
-            if (!CONFIG.GOOGLE_SCRIPT_URL || CONFIG.GOOGLE_SCRIPT_URL.trim() === '' || CONFIG.GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+            if (!CONFIG.GOOGLE_SCRIPT_URL || CONFIG.GOOGLE_SCRIPT_URL.trim() === '') {
                 statusElement.textContent = 'Not configured';
                 statusElement.className = 'ml-4 px-2 py-1 text-xs rounded-full bg-red-100 text-red-800';
-
-                // Show a non-blocking notification instead of a modal
-                showNotification('Google Apps Script URL is not configured. Using local storage mode.', 'warning', {
-                    persistent: true,
-                    actions: [{
-                        label: 'Setup Now',
-                        handler: `showSetupModal()`,
-                        primary: true
-                    }]
-                });
-
+                showSetupModal();
                 return false;
             }
 
